@@ -37,7 +37,7 @@ class Mongo:
             for exp in experiments:
                 experiment_array.append(exp)
             return(experiment_array,user["userFullName"])
-        return(None)
+        return(None,None)
 
     def createExperiment(self,description,userName,name):
         """
