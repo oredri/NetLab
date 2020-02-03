@@ -1,10 +1,20 @@
 function submit_login_screen() {
     location.href = "/";
 }
+function ValidateEmail(mail)
+{
+ if (/^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/.test(mail))
+  {
+    return (true)
+  }
+    return (false)
+}
 window.onload = function() { //register function to the system
     document.getElementById("register").addEventListener("click", function() {//this function contain constraint for the register logic
         if (document.getElementById("your_name").value == "" || document.getElementById("your_pass").value == "" || document.getElementById("your_username").value == null)
-            alerty.toasts("1 or more of the fields is empty, please fill the all the fields");
+            alerty.toasts("1 or more of the fields is empty, please fill the all fields");
+        else if (ValidateEmail(document.getElementById("your_name").value)==0)
+            alerty.toasts("You have entered an invalid email address!");
         else {
             document.getElementById("loadingbar").style.visibility = 'visible';
             var form_data = new FormData();
