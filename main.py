@@ -30,13 +30,14 @@ def registerscreen():
 
 @app.route('/login', methods=['GET', 'POST'])
 #Getting the user details and returning his experiments if he exist or else the function returning null
-#Author: Tom Zarhin
 def login():
     inputEmail=request.form.get('inputEmail')
     password = request.form.get('password')
     experiment_array,user_fullname=mongo.login(inputEmail,password)
+    if(user_fullname==None):
+        return jsonify({'error':"No Such user, please try again"})
     if(experiment_array==None):
-        return jsonify({'pstatus':"NOT OK"})
+        return jsonify({'ok':"new user"})
     return jsonify({'experiments': experiment_array,"fullname":user_fullname})
     #ret= jsonify({'experiments': experiment_array})
 
